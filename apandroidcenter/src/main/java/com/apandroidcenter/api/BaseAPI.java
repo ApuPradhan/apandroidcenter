@@ -178,6 +178,7 @@ public abstract class BaseAPI implements Request.Method, BaseAPIHelper {
         JsonObjectRequest jObj = new JsonObjectRequest(method, url, reqBody, resListener, errorListener);
         jObj.setHeaders(headers);
         jObj.setShouldCache(false);
+        jObj.setRetryPolicy(new DefaultRetryPolicy(30000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(jObj);
